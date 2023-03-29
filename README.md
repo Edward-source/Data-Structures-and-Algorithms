@@ -31,3 +31,4 @@ Learning Data structures and Algorithms in C programming
 [-] size() - Return the number of element in the list
 [-] isEmpty() - bool : True or False
 [-] isFull() - bool : true | false
+
