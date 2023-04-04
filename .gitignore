@@ -1,0 +1,4 @@
+output
+*.exe
+main.exe
+*.user
