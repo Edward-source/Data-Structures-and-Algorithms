@@ -53,12 +53,12 @@ int search(int value, Node* head)
       /* Worse case scenrio is that, the data is not in the first node */
       if(head->data == value)
       {
-          printf("%d was found !\n", value);
-          return 1;
-          head = head->next_node; // elect new head
-
-       }
+          printf("%d was found !\n", value); 
+          return 1; // return if found
+      }
+      head = head->next_node; // elect new head
    }
+
    return -1;
    
 }
@@ -70,36 +70,61 @@ void print_list(Node* node, char* title)
     while (!is_empty(node))
     {
         /* code */
-        printf("%d :", node->data);
+        printf("%d  ", node->data);
         node = node->next_node;
     }
     
 }
 
+/* A function to convert array to list */
+Node* ArrayToList(int arr[], int size, Node* first_node)
+{
+   
+   // initialize  the list 
+   Initialize_Node(first_node);
+   
+   // The first node will be at pos 0
+   first_node = create_node(arr[0]);
+
+   for (int i = 1; i <= size - 1; i++)
+   {
+     
+            /* append the data to the list */
+           Node *node = append_to_the_back(arr[i], first_node);
+       
+       
+       
+       // the new start now is the next node
+       //first_node = node;
+   }
+    
+   print_list(first_node, "Single Element list");
+   return first_node;
+     
+}
+
+
+/*
+
+Initialize_Node(first_node);
+    int arr[10]  = {20,30,40,50,60};
+
+    first_node = create_node(arr[0]);
+
+    Node* node_2 = append_to_the_back(arr[1], first_node);
+    Node* node_3 = append_to_the_back(arr[2], node_2);
+    Node* node_4 = append_to_the_back(arr[3], node_3);
+    Node* node_5 = append_to_the_back(arr[4], node_4);
+
+*/
 int main()
 {
-    Node*  first_node;
-    Initialize_Node(first_node);
-    first_node = create_node(7);
-
+    Node  *first_node;
+    int arr[5]  = {20,30,40,50,60};
+    first_node = ArrayToList(arr, 5, first_node);
     
-
-    Node* node_2 = append_to_front(2, first_node);
-    Node* node_3 = append_to_front(3, node_2);
-    Node* node_4 = append_to_front(4, node_3);
-    Node* node_5 = append_to_the_back(5, first_node);
+    print_list(first_node, "Single Element list");
     
-    print_list(node_4, "Single Element list");
-    int result = search(5, node_4);
-
-    if(result == 1)
-    {
-       printf("It was found !\n");
-    } 
-    else
-    {
-       printf("It was not found !\n");
-    }
        
     printf("\n\n");
     return 0;
