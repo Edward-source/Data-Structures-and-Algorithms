@@ -25,6 +25,8 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+#define EMPTY NULL
+
 /* Creating a linked List note model */
 typedef struct node
 {
@@ -32,18 +34,12 @@ typedef struct node
     struct node *next_node;
 } Node;
 
-typedef union
-{
-    /* data */
-    int x;
-}Student;
-
 
 /* function : initializing a list */
-void Initialize_Node(Node* node){ node = NULL; }
+void Initialize_Node(Node* node){ node = EMPTY; }
 
 /* function : check if is empty */
-int is_empty(const Node *linked_list){ return linked_list==NULL;}
+int is_empty(const Node *linked_list){ return linked_list==EMPTY;}
 
 Node* create_node(int data)
 {
@@ -90,21 +86,21 @@ Node* append_to_the_back(int data, Node* last_node)
     return new_tail;
 }
 
-int search(int value, Node* head)
+Node* search(int value, Node* pointer)
 {
    printf("Searching node...\n");
-   while (!is_empty(head))
+   while (!is_empty(pointer))
    {
       /* Worse case scenrio is that, the data is not in the first node */
-      if(head->data == value)
+      if(pointer->data == value)
       {
           printf("%d was found !\n", value); 
-          return 1; // return if found
+          return pointer; // return if found
       }
-      head = head->next_node; // elect new head
+      pointer = pointer->next_node; // elect new head
    }
 
-   return -1;
+   return NULL;
    
 } // 
 
@@ -141,18 +137,41 @@ void insert_node(Node* first_node, int data, int position)
      
 } 
 
-// del
-void delete_node(Node* first_node, int data)
+
+void menu()
 {
-    
+    printf("/* =============== LinkedList Options ===============\n \
+              1) Display List\n  \
+              2) Add a node to front\n \
+              3) Deletion in between the list\n       \
+              4) Quick\n        \
+          * ============================= END ====================*/");
+}
+
+/*  =============== DELETION IN A SINGLE LINKED LIST ===============
+* Deletion of the first node
+* deletion of the only node
+* deletion in between the list
+* Deletion at the end
+* ============================= END ===============================*/
+/*void delete_node(Node* first_node, int data)
+{
+    Node* current_p = NULL;
     if(search(data, first_node)==1)
     {
         printf("check if is right node : %d\n", first_node->data);
         while (!is_empty(first_node))
         {
-            /* code */
+            if(first_node->data == data)
+            {
+                current_p = first_node; // store the content of first node to temp var
+                first_node = first_node->next_node; // then, elect second node to be a new first node
+                free(current_p); // remove the temp (clean up)
+                break; // break the loop
+            }
 
-
+            //first_node = first_node->next_node;
+            
         }
     }
     else
@@ -160,12 +179,19 @@ void delete_node(Node* first_node, int data)
         printf("Node %d is not in the list :\n", data);
     }
     
-}
+}*/
 
 /*  Printing the values in the linked list */
 void PrintList(Node* node, char* title)
 {
     printf("%s\n", title);
+
+    if(is_empty(node))
+    {
+        printf("The list is empty\n");
+        return;
+    }
+
     while (!is_empty(node))
     {
         /* code */
@@ -215,20 +241,25 @@ void PrintArray(int arr[], int size)
 
 int main()
 {
-    Node*  first_node;
-    
-    Initialize_Node(first_node);
-    int arr[5]  = {20,30,40,50,60};
-    int array[5] = {0}; // init array
+    system("cls");
+    printf("\n");
+    int arr[10]  = {20,30,40,50,60,70,80,90,100,110}; // input stream ...
+    Node* first_node = ArrayToList(arr, 10);
 
-    first_node = ArrayToList(arr,5);
+    PrintList(first_node, "before del"); // before
+
+
+    Node* node_ptr = search(50, first_node);
+
+    printf("previous value would be %d\n", node_ptr->next_node->data);
+    //printf("next value would be %d\n", );
+    
+   
     
     
-    PrintList(first_node, "Single Element list");
-    ListToArray(first_node, array);
-    PrintArray(array,5);
     
-       
+   
     printf("\n\n");
+    
     return 0;
 }
