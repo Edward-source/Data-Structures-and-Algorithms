@@ -94,7 +94,7 @@ Node* search(int value, Node* pointer)
       /* Worse case scenrio is that, the data is not in the first node */
       if(pointer->data == value)
       {
-          printf("%d was found !\n", value); 
+          printf("%d was to a next node !\n", value); 
           return pointer; // return if found
       }
       pointer = pointer->next_node; // elect new head
@@ -103,6 +103,23 @@ Node* search(int value, Node* pointer)
    return NULL;
    
 } // 
+
+Node* find_previous_pointer(int data, Node* ptr)
+{
+   printf("Searching node...\n");
+   while (!is_empty(ptr))
+   {
+      /* Worse case scenrio is that, the data is not in the first node */
+      if(ptr->data == data)
+      {
+          printf("%d was to a next node !\n", data); 
+          return ptr; // return if found
+      }
+      ptr = ptr->next_node; // elect new head
+   }
+
+   return NULL;
+}
 
 /* A function to insert a node between nodes in the list */
 void insert_node(Node* first_node, int data, int position)
@@ -148,38 +165,7 @@ void menu()
           * ============================= END ====================*/");
 }
 
-/*  =============== DELETION IN A SINGLE LINKED LIST ===============
-* Deletion of the first node
-* deletion of the only node
-* deletion in between the list
-* Deletion at the end
-* ============================= END ===============================*/
-/*void delete_node(Node* first_node, int data)
-{
-    Node* current_p = NULL;
-    if(search(data, first_node)==1)
-    {
-        printf("check if is right node : %d\n", first_node->data);
-        while (!is_empty(first_node))
-        {
-            if(first_node->data == data)
-            {
-                current_p = first_node; // store the content of first node to temp var
-                first_node = first_node->next_node; // then, elect second node to be a new first node
-                free(current_p); // remove the temp (clean up)
-                break; // break the loop
-            }
 
-            //first_node = first_node->next_node;
-            
-        }
-    }
-    else
-    {
-        printf("Node %d is not in the list :\n", data);
-    }
-    
-}*/
 
 /*  Printing the values in the linked list */
 void PrintList(Node* node, char* title)
@@ -252,7 +238,14 @@ int main()
     Node* node_ptr = search(50, first_node);
 
     printf("previous value would be %d\n", node_ptr->next_node->data);
-    //printf("next value would be %d\n", );
+    //printf("next value would be %d\n", )
+    
+    /*
+       temp = node;
+
+       
+    
+    */
     
    
     
