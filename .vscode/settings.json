@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.fms": "fms",
+        "*.py": "python",
+        "stack": "c"
+    }
+}

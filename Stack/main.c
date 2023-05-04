@@ -23,6 +23,8 @@ char pop(Stack* stack_prt){ return (stack_prt->s[stack_prt->last_index--]);}
 /* return the last value of the stack */
 char top(const Stack* stack_ptr){return(stack_ptr->s[stack_ptr->last_index]);}
 
+int size(const Stack* stack_ptr) {return (stack_ptr->last_index+1);}
+
 /*
   Checking if is full ...
   Checking if is empty ..
@@ -32,27 +34,41 @@ int isFull(Stack* stack_ptr){return(stack_ptr->last_index==FULL);}
 
 int main()
 {
-   Stack  books;
-   char   *str = "Edward is";
-   int    i=0;
+   Stack  chars;
+   char   *str = "Edward is tladi";
    char   name_back[10];
-   initialize_stack(&books);
+
+   initialize_stack(&chars);
+
    printf("The original message ... %s\n", str);
 
-   while(str[i]!='\0')
-   {
-     printf("%c\n", str[i]);
-     push(str[i++], &books);
-   }
+   // appeding items to a stack
+   int i=0;
+   while(str[i]!='\0') 
+   {  
+    printf("%c\n", str[i]); 
+    if(size(&chars)<MAX_LEN)
+    {
+       push(str[i++], &chars); 
+    } 
+    else{
+      printf("The stack if full ,,,\n");
+      break;
+    }
+    
+    }
+   printf("The size of the stack is %d\n", size(&chars));
 
+    //
    i=0;
-   while(!isEmpty(&books) && i<10)
-   {
-      name_back[i++] = pop(&books);
-   }
+   while(!isEmpty(&chars) && i<10) { name_back[i++] = pop(&chars); }
+
+
    printf("The reverse message ... %s\n", name_back);
+
    
-   printf("Do I get here?");
+   
+   
 
    return 0;
 }
