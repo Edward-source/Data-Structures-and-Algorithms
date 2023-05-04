@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#define Empty -1 // empty
+#define Empty 0xFF // empty
 
 typedef struct node
 {
@@ -35,11 +35,11 @@ int main()
     Queue* queue_messages = create_queue();
     // use queue_messages to enqueue, dequeue, or perform any other queue operation
 
-    enqueue(queue_messages, 1, "Please call me\n");
-    enqueue(queue_messages, 2, "Please call me\n");
-    enqueue(queue_messages, 3, "Please call me\n");
-    enqueue(queue_messages, 4, "Please call me\n");
-    enqueue(queue_messages, 5, "Please call me\n");
+    enqueue(queue_messages, 0x00000001, "Please call me\n");
+    enqueue(queue_messages, 0x00000002, "Please call me\n");
+    enqueue(queue_messages, 0x00000003, "Please call me\n");
+    enqueue(queue_messages, 0x00000004, "Please call me\n");
+    enqueue(queue_messages, 0x00000005, "Please call me\n");
     print_queue(queue_messages);
     bool status;
     dequeue(queue_messages,  &status);
