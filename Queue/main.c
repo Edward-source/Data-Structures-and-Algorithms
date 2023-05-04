@@ -2,7 +2,8 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#define Empty 0xFF // empty
+#define Empty 0x00 // empty queue
+#define NOT_FOUND -10
 
 typedef struct node
 {
@@ -28,6 +29,7 @@ void enqueue(Queue* queue, int id, char* sms);
 int dequeue(Queue* queue, bool* status);
 void destroy_queue(Queue* queue);
 void print_queue(Queue* queue);
+int search_by_id(Queue* queue, int message_id);
 
 
 int main()
@@ -35,14 +37,25 @@ int main()
     Queue* queue_messages = create_queue();
     // use queue_messages to enqueue, dequeue, or perform any other queue operation
 
+    printf("Size : %d \n", size(queue_messages));
+
     enqueue(queue_messages, 0x00000001, "Please call me\n");
     enqueue(queue_messages, 0x00000002, "Please call me\n");
     enqueue(queue_messages, 0x00000003, "Please call me\n");
     enqueue(queue_messages, 0x00000004, "Please call me\n");
     enqueue(queue_messages, 0x00000005, "Please call me\n");
+
+    search_by_id(queue_messages, 1);
+    search_by_id(queue_messages, 12);
+
     print_queue(queue_messages);
+
     bool status;
     dequeue(queue_messages,  &status);
+    dequeue(queue_messages,  &status);
+    dequeue(queue_messages,  &status);
+    dequeue(queue_messages,  &status);
+  
 
     print_queue(queue_messages);
     destroy_queue(queue_messages);
@@ -148,4 +161,27 @@ void print_queue(Queue* queue)
         current_message = current_message->next_message;
     }
     printf("\n");
+
+    if(is_empty(queue))
+    {
+        printf("You have read all messages \n");
+    }
+}
+
+int search_by_id(Queue* queue, int message_id)
+{
+    Message* current_message = queue->first_message;
+    while (current_message !=NULL)
+    {
+        /* code */
+        if(current_message->message_id == message_id)
+        {
+            printf("The message id was found ..\n");
+            return message_id;
+        }
+        current_message = current_message->next_message;
+    }
+
+    printf("The message is not found ....\n");
+    return NOT_FOUND;
 }
