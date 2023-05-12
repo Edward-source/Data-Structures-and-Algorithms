@@ -1,0 +1,20 @@
+Inside CPU
+    + Registers {Special Registers, General Purpose Registers}
+    + ALU
+    + Interrupt Controller
+    + Debug
+
+Memory  {RAN, Flash(ROM)} => Peripherals and Ports(I/O)
+
+Toolchain
+   + Preprocessing
+   + Assembling
+   + Compiling
+   + Linking 
+   + Locating
+   + Installing
+
+Learning About the memory:
+  SRAN ranges (4 kB - 32 kB)  (Contains program Data)
+  Flash       (32 KB - 256 KB) (Contains program code)
+
