@@ -1,0 +1,51 @@
+## Inside CPU
+    + Registers {Special Registers, General Purpose Registers}
+    + ALU
+    + Interrupt Controller
+    + Debug
+
+Memory  {RAN, Flash(ROM)} => Peripherals and Ports(I/O)
+
+## Toolchain
+   + Preprocessing
+   + Assembling
+   + Compiling
+   + Linking 
+   + Locating
+   + Installing
+
+## About the memory:
+  SRAN ranges (4 kB - 32 kB)  (Contains program Data)
+  Flash       (32 KB - 256 KB) (Contains program code)
+
+## Allocated Data Characteristics
+   * Size                           | Variable Type (int, char, float, ect)
+   * Access                         | Type Qualifier (const, volatile)
+   * Scope                          | Type Modifiers  (signed, unsigned, short, long)       
+   * Location                       | Storage Class (Aout, Static, Extern, Register)
+   * Creation time
+   * Lifetime
+
+
+  ## Data Location
+  * Data Memory (Most Common)
+     * RAM
+  * Code Memory
+     * Read-Only Data
+  * External Non-volatile Memory
+      * Non-Volatile
+
+  # Data Segment
+  Start Adress  .Data      -> `static int vary = 10;`  && `extenrn int var=19`
+                .Bss       -> `static char var; static int varx =0;`
+                .Heap
+                (unused)
+  End Address   .Stack     -> `void run()  { int varb; }`
+
+  ## Code Segment
+  Start Address  .intvect
+                 .text
+                 .const   -> `const char var = 'a';`
+                 .cinit
+                 .pinit
+  End Address    (unused)
