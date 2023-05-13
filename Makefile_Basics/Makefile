@@ -27,7 +27,7 @@ all: solution
 
 # Target to build the executable
 solution: main.o speed.o acceleration.o
-	$(CC) $(CFLAGS) -o solution main.o speed.o acceleration.o
+	$(CC) $(CFLAGS) -o solution main.o speed.o acceleration.o linked_list.o
 
 # Target to compile main.c to an object file
 main.o: main.c
@@ -40,6 +40,11 @@ speed.o: speed.c
 # Target to compile acceleration.c to an object file
 acceleration.o: acceleration.c
 	$(CC) $(CFLAGS) -c acceleration.c
+
+# Target to compile linked_list.c to an object file
+linked_list.o: linked_list.c
+	$(CC) $(CFLAGS) -c  /linked_list/linked_list.c
+
 
 # Target to clean up generated files
 clean:

@@ -1,39 +1,5 @@
 
-/* =============================================================================
- |   Project   :  DATA STRUCTURES AND ALGORITHS IN C
- |
- |   Author    :  EDWARD TLADI
- |   Language  :  ANSI C LANG
- |   To Compile:  gcc main.c 
- |
- |   Date      :  05 /04/2023
- |
- +-----------------------------------------------------------------------------
- |
- |  Description:  Learning Link list in C 
- |
- |    Algorithm:  OUTLINE THE APPROACH USED BY THE PROGRAM TO SOLVE THE
- |      PROBLEM.
- |
- |   Required Features Not Included: 
- |
- |   Known Bugs:  
- |
- *=========================================================================== */
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-
-#define EMPTY NULL
-
-/* Creating a linked List note model */
-typedef struct node
-{
-    int data; 
-    struct node *next_node;
-} Node;
-
+#include "linked_list.h"
 
 /* function : initializing a list */
 void Initialize_Node(Node* node){ node = EMPTY; }
@@ -57,15 +23,7 @@ Node* append_to_front(int data, Node* front_node)
     return head;
 }
 
- /*--------------------- append_node(Node*) -------------------------
-|  Function FUNCTION_NAME
-|
-|  Purpose:  
-|  
-|  Parameters:
-|  
-|  Returns:  
-*-------------------------------------------------------------------*/
+
 void append_node(Node* head_of_list, Node* new_node )
 {
     if(!is_empty(new_node)  && !is_empty(head_of_list))
@@ -224,35 +182,3 @@ void PrintArray(int arr[], int size)
      printf("\n");
 }
 
-
-int main()
-{
-    system("cls");
-    printf("\n");
-    int arr[10]  = {20,30,40,50,60,70,80,90,100,110}; // input stream ...
-    Node* first_node = ArrayToList(arr, 10);
-
-    PrintList(first_node, "before del"); // before
-
-
-    Node* node_ptr = search(50, first_node);
-
-    printf("previous value would be %d\n", node_ptr->next_node->data);
-    //printf("next value would be %d\n", )
-    
-    /*
-       temp = node;
-
-       
-    
-    */
-    
-   
-    
-    
-    
-   
-    printf("\n\n");
-    
-    return 0;
-}
